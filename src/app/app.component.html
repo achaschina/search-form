@@ -1,0 +1,79 @@
+<form class="form" [formGroup]="myForm">
+  <div class="form-group row">
+    <label for="" class="col-3 col-form-label">Тип</label>
+    <div class="col-9">
+      <mat-form-field class="select-form-field">
+        <mat-select placeholder="Все" 
+                    formControlName="types" 
+                    (ngModelChange) = "types = (types == undefine ? null : types)" multiple>
+          <mat-option *ngFor="let type of filesType" [value]="types">{{type.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="" class="col-3 col-form-label">Владелец</label>
+    <div class="col-9">
+      <mat-form-field class="select-form-field">
+          <mat-select placeholder="Все" 
+                      formControlName="users" 
+                      (ngModelChange) = "users = (users == undefine ? null : users)" >
+          <mat-option *ngFor="let user of usersArr" [value]="user">{{user.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="select" class="col-3 col-form-label">Местоположение</label>
+    <div class="col-9">
+      <button mat-raised-button>ВЕЗДЕ</button>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="offset-sm-3">
+      <mat-checkbox #inBasket style="margin-right: 50px;">В корзине</mat-checkbox>
+      <mat-checkbox #mark>Помеченные</mat-checkbox>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="" class="col-3 col-form-label">Дата изменения</label>
+    <label for="" class="col-3 col-form-label" style="padding-left: 0px;">Между</label>
+
+    <div class="offset-sm-3">
+      <mat-form-field id="startDate">
+        <input matInput [matDatepicker]="startDate" placeholder="Начало периода">
+        <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+        <mat-datepicker #startDate></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field id="endDate">
+        <input matInput [matDatepicker]="endDate" placeholder="Окончание периода">
+        <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+        <mat-datepicker #endDate></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="" class="col-3 col-form-label">Название объекта</label>
+    <div class="col-9" style="padding-left: 0px;">
+      <mat-form-field class="txt-form-field">
+        <input matInput type="text" placeholder="Введите часть названия файла" [(ngModel)]="value" [ngModelOptions]="{standalone: true}">
+        <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row justify-content-md-end">
+      <button type="reset" 
+              mat-button (click)="reset(myForm, mark, inBasket); ">СБРОСИТЬ</button>
+      <button mat-raised-button color="primary" (click)= "search()">ПОИСК</button>
+    </div>
+  </div>
+
+</form>

@@ -1,0 +1,19 @@
+ /* .mat-form-field{
+    width: 25rem !important;
+} */
+#startDate, #endDate {
+    width: 23rem !important;
+}
+#startDate, .mat-checkbox-label {
+    margin-right: 5rem;
+}
+label {
+    color: #93969b;
+}
+.txt-form-field {
+    width: 51rem;
+}
+
+.select-form-field {
+    width: 25rem;
+}
